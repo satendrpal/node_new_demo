@@ -9,6 +9,7 @@ const getUsers = async (req, res, next) => {
     } catch (err) {
       next(err);
     }
+    
   };
   const getUsersid=async(req,res,next)=>{
   
