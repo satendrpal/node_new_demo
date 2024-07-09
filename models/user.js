@@ -1,19 +1,19 @@
 const db = require("../connection");
 
 const getUsers = async () => {
-    const query = 'SELECT * FROM users';
+    const query = 'SELECT * FROM rough';
     const { rows } = await db.query(query);
     return rows;
   };
   
   const getUsersid = async(id)=>{
-    const query='SELECT * FROM ecomaccount where id=$1';
+    const query='SELECT * FROM rough where id=$1';
     const {rows} = await db.query(query,[id]);
     return rows[0]; 
   }
   const createUser = async ({ name, email, password }) => {
     try {
-      const query = 'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *';
+      const query = 'INSERT INTO rough (name, email, password) VALUES ($1, $2, $3) RETURNING *';
       const values = [name, email, password];
       const { rows } = await db.query(query, values);
       return rows[0];
