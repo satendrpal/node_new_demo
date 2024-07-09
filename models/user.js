@@ -23,9 +23,23 @@ const getUsers = async () => {
     }
   };
 
+  const update = async ({id, name, email, password}) => {
+    try {
+      const query='update rough set name=$1,email=$2,password=$3 where id=$4 RETURNING *'
+      const val= [name,email,password, id];
+      const { rows }=await db.query(query,val);
+      return rows[0];
+
+    }catch(error){
+      console.error('Error creating user:', error);
+      throw error; // Optionally re-throw the error
+    }
+  }
+
   module.exports = {
     getUsers,
     getUsersid,
     createUser,
+    update,
     // Add other CRUD operations as needed
   };
